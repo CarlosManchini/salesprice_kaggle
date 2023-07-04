@@ -29,9 +29,6 @@ A seleção de modelos é deve ser realizada de tal forma que o modelo seja simp
 A estimação dos parâmetros do modelo pode ser realizada por vários métodos. Os estimadores de máxima verossimilhança são amplamente utilizados na literatura. Cordeiro e Demétrio (2013) reafirmam que o mesmo possui ótimas propriedades, como consistência e eficiência assintótica.
 Quando não há uma solução fechada para os estimadores são considerados métodos numéricos como o de Newton-Raphson para obtenção da estimativa de máxima verossimilhança.
 
-Após a seleção e estimação do modelo são realizados vários procedimentos para: verificar a adequabilidade de suposições como a distribuição assumida para $Y$ e a função de ligação, qualidade do ajuste em termos de variabilidade, encontrar observações influentes assim como discrepâncias entre o modelo ajustado e os dados. Esses processos pertencem a análise de diagnóstico e influência, 
-onde é verificado possíveis afastamentos das suposições feitas para o modelo para garantir uma qualidade de ajuste.
-
 ### 3. Descrição dos dados
 
 O banco de dados foi obtido diretamente do site [Kaggle](https://www.kaggle.com/), que coletou as informações de um escritório de impostos na cidade de Ames, Estados Unidos. Os dados contam com 79 variáveis e uma amostra de 1460 observações, ou seja, 1460 residências que foram avaliadas de 2006 a 2010 para cálculo dos valores das propriedades residenciais vendidas. A variável resposta em estudo é o preço de venda das casas (**SalePrice**). Realizamos uma modelagem em $Y$ com informações sobre diversos fatores das casas sendo candidatas a inclusão as seguintes variáveis explicativas:
@@ -72,7 +69,7 @@ A variável resposta apresenta característica contínua limitada aos reais posi
 Inicialmente, testamos se a mesma provém de uma população que apresenta uma distribuição normal. Como método visual, realizou-se o Q-Q Plot (Figura 1) onde os quantis do conjunto de dados é comparado com os quantis teóricos normais. Pontos em linha reta indicam alta correlação entre o modelo teórico e os dados assumindo normalidade, fato não ocorrido nesta ocasião. 
 
 <p align="center">
-  <img src="fig1.PNG" alt="Figura1" width="800">
+  <img src="fig1.png" alt="Figura1" width="480">
 </p>
 
 #### 4.2 Função de Ligação
@@ -82,3 +79,11 @@ Inicialmente, testamos se a mesma provém de uma população que apresenta uma d
 
  Utilizando os dados e variáveis explicativas candidatas explicitadas na seção anterior, construimos um modelo para o preço de vendas de casas. O propósito é encontrar um modelo que contenha o menor e melhor conjunto de regressores, pois o gasto de recursos e otimização para se trabalhar com o modelo deve ser baixo. A fim de procurar as variáveis mais significativas para o modelo, foi utilizado o procedimento *stepwise* para seleção de modelos de regressão.  Neste método, variáveis são adicionadas e descartadas a cada etapa ($H_0: \beta_j=0$) com base no critério de seleção AIC (Akaike, 1947).   A medida de Akaike considera a qualidade de ajuste e uma "penalização" para a inclusão de regressores. Segundo Paula (2013), a idéia básica é selecionar um modelo que seja parcimonioso, que esteja bem ajustado e tenha um número reduzido de parâmetros. O processo é interrompido quando encontra o menor AIC possível dentre todas possibilidades de modelos testados.
  
+### 5. Análises e Resultado
+
+Após a seleção e estimação do modelo são realizados vários procedimentos para: verificar a adequabilidade de suposições como a distribuição assumida para $Y$ e a função de ligação, qualidade do ajuste em termos de variabilidade, encontrar observações influentes assim como discrepâncias entre o modelo ajustado e os dados. Esses processos pertencem a análise de diagnóstico e influência, 
+onde é verificado possíveis afastamentos das suposições feitas para o modelo para garantir a qualidade do ajuste.
+
+A análise de influência constatou quatro observações influentes. Duas são casas muito grandes com preço elevado e as restantes eram vendas que provavelmente não representam valores reais do mercado. Portanto, esses pontos foram removidos da amostra pois distorciam as inferências estimadas. Todas análises desta seção serão baseadas no modelo sem tais observações e foram desenvolvidas em linguagem **R**.
+
+#### 5.1 Análise Descritiva
