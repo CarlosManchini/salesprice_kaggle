@@ -57,7 +57,7 @@ O banco de dados foi obtido diretamente do site [Kaggle](https://www.kaggle.com/
 * **Neighborhood**: Bairros de Ames;
 * **OverallCond**: Classifica (1 a 10) a condição da casa;
 
-O padrão das casas dos EUA se diferencia das casas brasileiras. Por exemplo, a grande maioria das casas americanas tem um porão (basement), ou melhor, um 1$^\circ$ andar no subsolo da casa, portanto é relevante considerar no modelo. 
+O padrão das casas dos EUA se diferencia das casas brasileiras. Por exemplo, a grande maioria das casas americanas tem um porão (basement), ou melhor, um primeiro andar no subsolo da casa, portanto é relevante considerar no modelo. 
 
 Duas variáveis contidas no modelo são qualitativas, o que demandou o uso de variáveis
 dummies. Conforme Montgomery e Runger (2010), quando uma variável qualitativa possui mais de dois valores, se faz necessário o uso de mais de uma variável Dummy, sendo que uma variável com $t$ níveis pode ser modelada com $t-1$ variáveis.
@@ -72,8 +72,24 @@ Inicialmente, testamos se a mesma provém de uma população que apresenta uma d
   <img src="fig1.png" alt="Figura1" width="480">
 </p>
 
+Testes paramétricos podem ser realizados para testar normalidade de uma variável. Os usuais são de Shapiro-Wilk (1965) e Kolmogorov-Smirnov (1948)  com as seguintes hipóteses:
+
+
+$$
+\begin{cases}
+H_0: \text{os dados seguem uma distribuição normal}; \\
+H_0: \text{os dados não seguem uma distribuição normal}. \\
+\end{cases}
+$$
+
+Analisando a variável resposta preço das casas obteve-se para os dois testes mencionados p-valor $<0,05$. Portanto, a hipótese nula é rejeitada ao nível de 5\% de significância e conclui-se que há evidências de que os dados testados não provém de uma população normalmente distribuída. Deve-se esclarecer que esses testes podem ser distorcidos, por exemplo, o tamanho da amostra em geral influencia. Detalhe importante: São os resíduos e não os dados que devem apresentar normalidade.
+
+  Alternativamente à distribuição normal, a variável resposta $Y$ (preço das casas) sendo contínua positiva assimétrica poderia assumir distribuição gama ou normal inversa. As análises de diagnóstico, envelope simulado e qualidade de ajuste demonstraram melhor adequabilidade da distribuição gama, portanto à consideramos.
+
+
+
 #### 4.2 Função de Ligação
-  Em termos de função de ligação para distribuição gama há três usuais opções de uso: canônica (recíproca) $\eta=\mu^{-1} $, logarítmica $ \eta = log\mu$ e identidade $\eta=\mu$. A canônica traz propriedades estatísticas desejáveis para o modelo, principalmente no caso de amostra pequena. Porém, sendo ela uma função inversa e a variável resposta em estudo com predominância de valores altos, dificulta a interpretação dos parâmetros. Com isso, optou-se pelo uso da função de ligação identidade pois é adequada no sentido em que ambos, $\eta$ e $\mu$, podem assumir valores na reta real.
+  Em termos de função de ligação para distribuição gama há três usuais opções de uso: canônica (recíproca) $\eta=\mu^{-1} $, logarítmica  $\eta = log \mu$ e identidade $\eta=\mu$. A canônica traz propriedades estatísticas desejáveis para o modelo, principalmente no caso de amostra pequena. Porém, sendo ela uma função inversa e a variável resposta em estudo com predominância de valores altos, dificulta a interpretação dos parâmetros. Com isso, optou-se pelo uso da função de ligação identidade pois é adequada no sentido em que ambos, $\eta$ e $\mu$, podem assumir valores na reta real.
   
 #### 4.3 Seleção do Modelo
 
