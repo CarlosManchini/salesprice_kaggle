@@ -34,7 +34,7 @@ onde é verificado possíveis afastamentos das suposições feitas para o modelo
 
 ### 3. Descrição dos dados
 
-O banco de dados foi obtido diretamente do site [Kaggle](https://www.kaggle.com/), que coletou as informações de um escritório de impostos na cidade de Ames, Estados Unidos. Os dados contam com 79 variáveis e uma amostra de 1460 observações, ou seja, 1460 residências que foram avaliadas de 2006 a 2010 para cálculo dos valores das propriedades residenciais vendidas. A variável resposta em estudo é o preço de venda das casas (\textbf{SalePrice}). Realizamos uma modelagem em $Y$ com informações sobre diversos fatores das casas sendo candidatas a inclusão as seguintes variáveis explicativas:
+O banco de dados foi obtido diretamente do site [Kaggle](https://www.kaggle.com/), que coletou as informações de um escritório de impostos na cidade de Ames, Estados Unidos. Os dados contam com 79 variáveis e uma amostra de 1460 observações, ou seja, 1460 residências que foram avaliadas de 2006 a 2010 para cálculo dos valores das propriedades residenciais vendidas. A variável resposta em estudo é o preço de venda das casas (**SalePrice**). Realizamos uma modelagem em $Y$ com informações sobre diversos fatores das casas sendo candidatas a inclusão as seguintes variáveis explicativas:
 
 * **LotArea**: Tamanho do lote em pés quadrados ou \textit{square feet}*;
 * **OverallQual**: Classifica (1 a 10) o material e acabamento da casa;
@@ -59,3 +59,26 @@ O banco de dados foi obtido diretamente do site [Kaggle](https://www.kaggle.com/
   + **Po**: Ruim
 * **Neighborhood**: Bairros de Ames;
 * **OverallCond**: Classifica (1 a 10) a condição da casa;
+
+O padrão das casas dos EUA se diferencia das casas brasileiras. Por exemplo, a grande maioria das casas americanas tem um porão (basement), ou melhor, um 1$^\circ$ andar no subsolo da casa, portanto é relevante considerar no modelo. 
+
+Duas variáveis contidas no modelo são qualitativas, o que demandou o uso de variáveis
+dummies. Conforme Montgomery e Runger (2010), quando uma variável qualitativa possui mais de dois valores, se faz necessário o uso de mais de uma variável Dummy, sendo que uma variável com $t$ níveis pode ser modelada com $t-1$ variáveis.
+
+### 4. Metodologia
+
+#### 4.1 Distruibuição
+A variável resposta apresenta característica contínua limitada aos reais positivos e assimetria. A escolha da distribuição é feita com base na natureza dos dados e intervalo de variação. 
+Inicialmente, testamos se a mesma provém de uma população que apresenta uma distribuição normal. Como método visual, realizou-se o Q-Q Plot (Figura 1) onde os quantis do conjunto de dados é comparado com os quantis teóricos normais. Pontos em linha reta indicam alta correlação entre o modelo teórico e os dados assumindo normalidade, fato não ocorrido nesta ocasião. 
+
+<p align="center">
+  <img src="fig1.PNG" alt="Figura1" width="800">
+</p>
+
+#### 4.2 Função de Ligação
+  Em termos de função de ligação para distribuição gama há três usuais opções de uso: canônica (recíproca) $\eta=\mu^{-1} $, logarítmica $ \eta = log\mu$ e identidade $\eta=\mu$. A canônica traz propriedades estatísticas desejáveis para o modelo, principalmente no caso de amostra pequena. Porém, sendo ela uma função inversa e a variável resposta em estudo com predominância de valores altos, dificulta a interpretação dos parâmetros. Com isso, optou-se pelo uso da função de ligação identidade pois é adequada no sentido em que ambos, $\eta$ e $\mu$, podem assumir valores na reta real.
+  
+#### 4.3 Seleção do Modelo
+
+ Utilizando os dados e variáveis explicativas candidatas explicitadas na seção anterior, construimos um modelo para o preço de vendas de casas. O propósito é encontrar um modelo que contenha o menor e melhor conjunto de regressores, pois o gasto de recursos e otimização para se trabalhar com o modelo deve ser baixo. A fim de procurar as variáveis mais significativas para o modelo, foi utilizado o procedimento *stepwise* para seleção de modelos de regressão.  Neste método, variáveis são adicionadas e descartadas a cada etapa ($H_0: \beta_j=0$) com base no critério de seleção AIC (Akaike, 1947).   A medida de Akaike considera a qualidade de ajuste e uma "penalização" para a inclusão de regressores. Segundo Paula (2013), a idéia básica é selecionar um modelo que seja parcimonioso, que esteja bem ajustado e tenha um número reduzido de parâmetros. O processo é interrompido quando encontra o menor AIC possível dentre todas possibilidades de modelos testados.
+ 
