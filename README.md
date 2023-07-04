@@ -1,5 +1,5 @@
 ## Modelagem do preço de venda de imóveis dos Estados Unidos
-##### Objetiva-se ajustar um modelo linear generalizado (MLG) para descrever o preço de venda de residências (em doláres) através da relação com variáveis independentes. Os dados foram obtidos de um escritório de impostos na cidade de Ames - Estados Unidos. Para validação do modelo proposto, da distribuição gama assumida para a variável resposta e da função de ligação identidade utilizada foram realizados testes estatísticos, análises de diagnóstico e influência. Os resultados demonstraram bom comportamento dos resíduos, adequação da função de ligação e boa qualidade no ajuste do modelo. 
+##### Objetiva-se ajustar um modelo linear generalizado (MLG) para descrever o preço de venda de residências (em doláres) através da relação com variáveis independentes. Os dados foram obtidos do [Kaggle](https://www.kaggle.com/) de um escritório de impostos na cidade de Ames - Estados Unidos. Para validação do modelo proposto, da distribuição gama assumida para a variável resposta e da função de ligação identidade utilizada foram realizados testes estatísticos, análises de diagnóstico e influência. Os resultados demonstraram bom comportamento dos resíduos, adequação da função de ligação e boa qualidade no ajuste do modelo. 
 
 ### 1. Introdução
 A análise de preços de imóveis mostra-se de grande utilidade para gerar informações relevantes que definem a tomada de decisão. Além disso, é importante conhecer o potencial de venda do imóvel. 
@@ -29,10 +29,33 @@ A seleção de modelos é deve ser realizada de tal forma que o modelo seja simp
 A estimação dos parâmetros do modelo pode ser realizada por vários métodos. Os estimadores de máxima verossimilhança são amplamente utilizados na literatura. Cordeiro e Demétrio (2013) reafirmam que o mesmo possui ótimas propriedades, como consistência e eficiência assintótica.
 Quando não há uma solução fechada para os estimadores são considerados métodos numéricos como o de Newton-Raphson para obtenção da estimativa de máxima verossimilhança.
 
-
 Após a seleção e estimação do modelo são realizados vários procedimentos para: verificar a adequabilidade de suposições como a distribuição assumida para $Y$ e a função de ligação, qualidade do ajuste em termos de variabilidade, encontrar observações influentes assim como discrepâncias entre o modelo ajustado e os dados. Esses processos pertencem a análise de diagnóstico e influência, 
 onde é verificado possíveis afastamentos das suposições feitas para o modelo para garantir uma qualidade de ajuste.
 
+### 3. Descrição dos dados
 
+O banco de dados foi obtido diretamente do site [Kaggle](https://www.kaggle.com/), que coletou as informações de um escritório de impostos na cidade de Ames, Estados Unidos. Os dados contam com 79 variáveis e uma amostra de 1460 observações, ou seja, 1460 residências que foram avaliadas de 2006 a 2010 para cálculo dos valores das propriedades residenciais vendidas. A variável resposta em estudo é o preço de venda das casas (\textbf{SalePrice}). Realizamos uma modelagem em $Y$ com informações sobre diversos fatores das casas sendo candidatas a inclusão as seguintes variáveis explicativas:
 
-
+* **LotArea**: Tamanho do lote em pés quadrados ou \textit{square feet}*;
+* **OverallQual**: Classifica (1 a 10) o material e acabamento da casa;
+* **YearBuilt}**: Ano de construção da casa;
+* **BsmtQual**: Avalia a altura do porão entre
+  + **Ex**: Excelente ($100+$ polegadas)
+  + **Gd**: Bom (90-99 polegadas)
+  + **Ta**: Típico (80-89 polegadas)
+  + **Fa**: Razoável (70-79 polegadas
+  + **Po**: Ruim ($<70$ polegadas)
+* **BsmtFinSF1**: Área do porão finalizada;
+* **GrLivArea**: Tamanho da área de lazer em pés quadrados;
+* **OpenPorchSF**: Tamanho da área da varanda em pés quadrados;
+* **Fireplaces**: Quantidade de lareiras;
+* **GarageArea**: Área da garagem em pés quadrados;
+* **FullBath**: Quantidade de banheiros;
+* **KitchenQual**: Avalia a qualidade da cozinha entre
+  + **Ex**: Excelente
+  + **Gd**: Bom 
+  + **Ta**: Típico
+  + **Fa**: Razoável
+  + **Po**: Ruim
+* **Neighborhood**: Bairros de Ames;
+* **OverallCond**: Classifica (1 a 10) a condição da casa;
