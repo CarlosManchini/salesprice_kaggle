@@ -69,7 +69,7 @@ A variável resposta apresenta característica contínua limitada aos reais posi
 Inicialmente, testamos se a mesma provém de uma população que apresenta uma distribuição normal. Como método visual, realizou-se o Q-Q Plot (Figura 1) onde os quantis do conjunto de dados é comparado com os quantis teóricos normais. Pontos em linha reta indicam alta correlação entre o modelo teórico e os dados assumindo normalidade, fato não ocorrido nesta ocasião. 
 
 <p align="center">
-  <img src="fig1.png" alt="Figura1" width="480">
+  <img src="fig1.png" alt="Figura1" width="430">
 </p>
 
 Testes paramétricos podem ser realizados para testar normalidade de uma variável. Os usuais são de Shapiro-Wilk (1965) e Kolmogorov-Smirnov (1948)  com as seguintes hipóteses:
@@ -141,7 +141,7 @@ Para os sete testes individuais em cada parâmetro e para o teste múltiplo, rej
 Medindo qualidade de ajuste do MLG proposto, realizou-se uma análise do desvio utilizando a função *deviance* desde o modelo nulo com apenas um parâmetros até a inclusão de cada variável que compõem o modelo proposto. Os resultados dessa análise são demonstrados na Tabela 2. Observa-se o decréscimo do desvio conforme são incluídos regressores no modelo. Comparando o desvio de 3.64 do modelo final com os quantis da distribuição $\chi^2_{n-p}$ podemos perceber que a um nível de significância de 1\%, o modelo está bem ajustado, pois $\chi^2_{0.99;1450}=1529.16$. As diferenças ou *deviance* mais significativos foram do modelo nulo para o modelo com um regressor seguido do acréscimo de dois regressores. Ou seja, as variáveis explicativas que mais influenciam na variável resposta são a área total da casa em pés quadrados e a classificação (1 a 10) da mesma em relação ao material e acabamento.
 
 <p align="center">
-  <img src="table2.png" alt="Tabela2" width="440">
+  <img src="table2.png" alt="Tabela2" width="410">
 </p>
 
 #### 5.5 Teste RESET
@@ -150,7 +150,7 @@ Segundo Cordeiro e Demétrio (2013), se o teste formal construído pela adição
 A Tabela 3 comprova a não significância do parâmetro associado à $\hat{\eta}^2$. Portanto, conclui-se que a função de ligação identidade utilizada é adequada para o modelo.
 
 <p align="center">
-  <img src="table3.png" alt="Tabela3" width="440">
+  <img src="table3.png" alt="Tabela3" width="499">
 </p>
 
 #### 5.6 Interpretação do Modelo
@@ -159,7 +159,7 @@ O resumo do modelo final é apresentado na Tabela 4. Observa-se que a cada unida
 O sinal positivo associado aos parâmetros que envolvem áreas esta intuitivamente correto, sendo que residências maiores tendem a serem mais caras. Explicar os coeficientes negativos pode ser complicado. Por exemplo, se o tamanho da casa é fixado, não faria sentido aumentar a quantidade de banheiros ou lareiras. Além disso, sabemos que quanto maior a área de um terreno, maior a possível quantidade de vagas na garagem ou mesmo a área do porão. De certo modo, algumas variáveis são explicadas por outras, causando certo grau de multicolinearidade. O ideal seria a remoção de variáveis correlacionadas, o que não foi viável neste trabalho. Porém, a modelagem fornece informação de que aumentando área da garagem em uma unidade, espera-se que haja uma queda no preço da casa em $\$4,206$.
 
 <p align="center">
-  <img src="table4.png" alt="Tabela4" width="440">
+  <img src="table4.png" alt="Tabela4" width="510">
 </p>
 
 #### 5.7 Análise de Diagnóstico e Influência
@@ -169,7 +169,7 @@ A análise de diagnóstico e influência é necessária para identificar problem
 Para as técnicas gráficas de análise de diagnóstico utilizou-se o resíduo componente do desvio padronizado. Williams (1984) através de estudos de simulação, indicou o referido resíduo para a análise de diagnóstico em MLGs. É importante ressaltar que anteriormente à realização desses gráficos, foi detectado quatro observações fortemente influentes e removidas do modelo.
 
 <p align="center">
-  <img src="fig2.png" alt="Fig2" width="440">
+  <img src="fig2.png" alt="Fig2" width="580">
 </p>
 
 
@@ -194,7 +194,7 @@ Atkinson (1981) propôs a construção por simulação de Monte Carlo de uma ban
 
 
 <p align="center">
-  <img src="fig4.png" alt="Fig4" width="440">
+  <img src="fig4.png" alt="Fig4" width="510">
 </p>
 
 ### 6. Conclusão
@@ -203,5 +203,5 @@ Após as técnicas de diagnóstico e qualidade, conclui-se que o modelo proposto
 Destaca-se a grande contribuição que um MLG pode oferecer ao mercado imobiliário, pelo fato de o preço da casa ser estimado com base em suas características e fornecimento previsões. Desta forma, situações de casas superestimadas ou subestimadas seriam evitadas e, ao mesmo tempo, ocorreria facilidade da geração do preço do imóvel demandando pouco tempo e recurso.
 
 <p align="center">
-  <img src="refs.png" alt="Refs" width="440">
+  <img src="refs.png" alt="Refs" width="550">
 </p>
