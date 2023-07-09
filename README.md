@@ -93,7 +93,7 @@ Analisando a variável resposta preço das casas obteve-se para os dois testes m
   
 #### 4.3 Seleção do Modelo
 
- Utilizando os dados e variáveis explicativas candidatas explicitadas na seção anterior, construimos um modelo para o preço de vendas de casas. O propósito é encontrar um modelo que contenha o menor e melhor conjunto de regressores, pois o gasto de recursos e otimização para se trabalhar com o modelo deve ser baixo. A fim de procurar as variáveis mais significativas para o modelo, foi utilizado o procedimento *stepwise* para seleção de modelos de regressão.  Neste método, variáveis são adicionadas e descartadas a cada etapa ($H_0: \beta_j=0$) com base no critério de seleção AIC (Akaike, 1947).   A medida de Akaike considera a qualidade de ajuste e uma "penalização" para a inclusão de regressores. Segundo Paula (2013), a idéia básica é selecionar um modelo que seja parcimonioso, que esteja bem ajustado e tenha um número reduzido de parâmetros. O processo é interrompido quando encontra o menor AIC possível dentre todas possibilidades de modelos testados.
+ Utilizando os dados e variáveis explicativas candidatas explicitadas na seção anterior, um modelo foi desenvolvido para descrever o preço de vendas de casas. O desafio é encontrar um modelo otimizado que contenha o menor e melhor conjunto de regressores, pois o gasto de recursos para se trabalhar com o modelo deve ser baixo. A fim de procurar as variáveis mais significativas para o modelo, foi utilizado o procedimento *stepwise* para seleção de modelos de regressão.  Neste método, variáveis são adicionadas e descartadas a cada etapa ($H_0: \beta_j=0$) com base no critério de seleção AIC (Akaike, 1947).   A medida de Akaike considera a qualidade de ajuste e uma "penalização" para a inclusão de regressores. Segundo Paula (2013), a idéia básica é selecionar um modelo que seja parcimonioso, que esteja bem ajustado e tenha um número reduzido de parâmetros. O processo é interrompido quando encontra o menor AIC possível dentre todas possibilidades de modelos testados.
  
 ### 5. Análises e Resultado
 
@@ -103,3 +103,43 @@ onde é verificado possíveis afastamentos das suposições feitas para o modelo
 A análise de influência constatou quatro observações influentes. Duas são casas muito grandes com preço elevado e as restantes eram vendas que provavelmente não representam valores reais do mercado. Portanto, esses pontos foram removidos da amostra pois distorciam as inferências estimadas. Todas análises desta seção serão baseadas no modelo sem tais observações e foram desenvolvidas em linguagem **R**.
 
 #### 5.1 Análise Descritiva
+
+Uma breve análise descritiva é apresentada na Tabela 1. Podemos observar que das 1456 casas avaliadas o preço médio de venda das casas foi de 179112 dólares tendo como extremos mínimo 135751 e máximo 280618 o que justifica um desvio padrão alto. A área total das casas é bem variável pois o menor tamanho apresenta 1470 pés quadrados enquanto a maior 56600. Tratando de lareiras, obteve-se uma média de 0.59 demonstrando que há lareiras em pouco mais da metade das casas de Ames. A classificação (1 a 10) do material da casa teve 6.1 como resultado médio.
+
+
+
+<p align="center">
+  <img src="table1.PNG" alt="Tabela1" width="560">
+</p>
+
+#### 5.2 Modelo Final
+
+
+Após aplicação do métodos de seleção **stepwise** sobre variáveis que explicam o preço de venda das casas chegamos ao modelo final:
+
+$$ \hat{y} = 150300 + 2.184x_1 -2632x_2 + 16.86x_3 - 2055x_4 -3.297  x_5 + 2064x_6 - 4.206x_7,$$ 
+
+em que $\hat{y}$ é o preço de venda da casa, $x_1$ é a área total, $x_2$ é a classificação do material da casa, $x_3$ é o tamanho da área de lazer, $x_4$ é a quantidade de lareiras, $x_5$ é área do porão, $x_6$ é a quantidade de banheiros e $x_7$ é área da garagem.  O modelo proposto apresenta AIC de $29736$. Para avaliar qualidade de ajuste disso, calculamos o  R2 generalizado  igual a $0.674$ sendo um "pseudo" coeficiente de determinação, ou seja, 67\% das variações ocorridas no preço de venda das casas são explicadas pelo conjunto de variáveis independentes presentes no modelo.
+
+#### 5.3 Teste de Wald
+
+Com intenção de verificar significância dos coeficientes do modelo o teste de Wald foi utilizado conjuntamente e individualmente (sete vezes). De forma geral, as hipóteses nula e alternativa são dadas respectivamente por:
+
+$$
+\begin{cases}
+H_0: & \beta_1 = \beta_2 =\beta_3 = \beta_4 = \beta_5 = \beta_6 = \beta_7 = 0\\
+H_1: &  \beta_1 = \beta_2 =\beta_3 = \beta_4 = \beta_5 = \beta_6 = \beta_7 \neq0
+\end{cases}
+$$
+
+Para os sete testes individuais em cada parâmetro e para o teste múltiplo, rejeitamos a hipótese nula. Portanto, conclui-se que todos coeficientes são significativos.
+
+
+
+#### 5.4 Desvio e *Deviance*
+
+Medindo qualidade de ajuste do MLG proposto, realizou-se uma análise do desvio utilizando a função *deviance* desde o modelo nulo com apenas um parâmetros até a inclusão de cada variável que compõem o modelo proposto. Os resultados dessa análise são demonstrados na Tabela 2. Observa-se o decréscimo do desvio conforme são incluídos regressores no modelo. Comparando o desvio de 3.64 do modelo final com os quantis da distribuição $\chi^2_{n-p} $ podemos perceber que a um nível de significância de 1\%, o modelo está bem ajustado, pois $\chi^2_{0.99;1450}=1529.16$. As diferenças ou \textit{deviance} mais significativos foram do modelo nulo para o modelo com um regressor seguido do acréscimo de dois regressores. Ou seja, as variáveis explicativas que mais influenciam na variável resposta são a área total da casa em pés quadrados e a classificação (1 a 10) da mesma em relação ao material e acabamento.
+
+<p align="center">
+  <img src="table2.PNG" alt="Tabela2" width="500">
+</p>
