@@ -119,7 +119,7 @@ Após aplicação do métodos de seleção **stepwise** sobre variáveis que exp
 
 $$ \hat{y} = 150300 + 2.184x_1 -2632x_2 + 16.86x_3 - 2055x_4 -3.297  x_5 + 2064x_6 - 4.206x_7,$$ 
 
-em que $\hat{y}$ é o preço de venda da casa, $x_1$ é a área total, $x_2$ é a classificação do material da casa, $x_3$ é o tamanho da área de lazer, $x_4$ é a quantidade de lareiras, $x_5$ é área do porão, $x_6$ é a quantidade de banheiros e $x_7$ é área da garagem.  O modelo proposto apresenta AIC de $29736$. Para avaliar qualidade de ajuste disso, calculamos o  R2 generalizado  igual a $0.674$ sendo um "pseudo" coeficiente de determinação, ou seja, 67\% das variações ocorridas no preço de venda das casas são explicadas pelo conjunto de variáveis independentes presentes no modelo.
+em que $\hat{y}$ é o preço de venda da casa, $x_1$ é a área total, $x_2$ é a classificação do material da casa, $x_3$ é o tamanho da área de lazer, $x_4$ é a quantidade de lareiras, $x_5$ é área do porão, $x_6$ é a quantidade de banheiros e $x_7$ é área da garagem.  O modelo proposto apresenta AIC de $29736$. Para avaliar qualidade de ajuste disso, calculamos o  R2 generalizado (Nagelkerke, 1991)   igual a $0.674$ sendo um "pseudo" coeficiente de determinação, ou seja, 67\% das variações ocorridas no preço de venda das casas são explicadas pelo conjunto de variáveis independentes presentes no modelo.
 
 #### 5.3 Teste de Wald
 
@@ -138,8 +138,15 @@ Para os sete testes individuais em cada parâmetro e para o teste múltiplo, rej
 
 #### 5.4 Desvio e *Deviance*
 
-Medindo qualidade de ajuste do MLG proposto, realizou-se uma análise do desvio utilizando a função *deviance* desde o modelo nulo com apenas um parâmetros até a inclusão de cada variável que compõem o modelo proposto. Os resultados dessa análise são demonstrados na Tabela 2. Observa-se o decréscimo do desvio conforme são incluídos regressores no modelo. Comparando o desvio de 3.64 do modelo final com os quantis da distribuição $\chi^2_{n-p} $ podemos perceber que a um nível de significância de 1\%, o modelo está bem ajustado, pois $\chi^2_{0.99;1450}=1529.16$. As diferenças ou \textit{deviance} mais significativos foram do modelo nulo para o modelo com um regressor seguido do acréscimo de dois regressores. Ou seja, as variáveis explicativas que mais influenciam na variável resposta são a área total da casa em pés quadrados e a classificação (1 a 10) da mesma em relação ao material e acabamento.
+Medindo qualidade de ajuste do MLG proposto, realizou-se uma análise do desvio utilizando a função *deviance* desde o modelo nulo com apenas um parâmetros até a inclusão de cada variável que compõem o modelo proposto. Os resultados dessa análise são demonstrados na Tabela 2. Observa-se o decréscimo do desvio conforme são incluídos regressores no modelo. Comparando o desvio de 3.64 do modelo final com os quantis da distribuição $\chi^2_{n-p}$ podemos perceber que a um nível de significância de 1\%, o modelo está bem ajustado, pois $\chi^2_{0.99;1450}=1529.16$. As diferenças ou *deviance* mais significativos foram do modelo nulo para o modelo com um regressor seguido do acréscimo de dois regressores. Ou seja, as variáveis explicativas que mais influenciam na variável resposta são a área total da casa em pés quadrados e a classificação (1 a 10) da mesma em relação ao material e acabamento.
 
 <p align="center">
-  <img src="table2.PNG" alt="Tabela2" width="500">
+  <img src="table2.png" alt="Tabela2" width="500">
 </p>
+
+#### 5.5 Teste RESET
+Para verificação da função de ligação identidade atribuída ao modelo, realizamos o teste Reset baseado na inclusão de uma covariável $\hat{\eta}^2$ extra no modelo. Em seguida, testamos se o parâmetro associado à essa covariável é significativo para o modelo ($H_0: \beta = 0$).
+Segundo \cite{gauss2008}, se o teste formal construído pela adição $\hat{\eta}^2$ ao preditor linear produz uma redução significativa no desvio do modelo, isso pode indicar uma função de ligação errada ou escalas erradas para as variáveis explanatórias. Se não rejeitarmos a hipótese nula, há evidências de que o modelo está corretamente especificado. 
+A tabela \ref{tab:reset} comprova a não significância do parâmetro associado à $\hat{\eta}^2$. Portanto, conclui-se que a função de ligação identidade utilizada é adequada para o modelo.
+
+
